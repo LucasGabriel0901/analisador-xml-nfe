@@ -121,3 +121,41 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# sistema_xml/settings.py
+
+# ... (outras configurações) ...
+
+# Mude isto:
+DEBUG = True 
+
+# Para isto:
+DEBUG = False  # MUITO IMPORTANTE para produção!
+# sistema_xml/settings.py
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ... (restante das configurações) ...
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False # MUDANÇA 1: DESATIVA O MODO DE DEBUG PARA PRODUÇÃO
+
+ALLOWED_HOSTS = [
+    '.azurewebsites.net', # MUDANÇA 2: PERMITE O DOMÍNIO DO AZURE
+    '127.0.0.1', 
+    'localhost'
+]
+
+# ... (restante das configurações até STATIC_URL) ...
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+
+STATIC_URL = "static/"
+# MUDANÇA 3: CONFIGURAÇÃO OBRIGATÓRIA PARA SERVIDORES DE PRODUÇÃO (AZURE)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# ... (restante do arquivo) ...
